@@ -24,7 +24,7 @@ namespace prologue_loader
         };
         static byte[] mod_data = { 0x85 }; //jne (2nd byte)
 
-        static void Main()
+        static void Main(string[] args)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace prologue_loader
                     return;
                 }
                 MemoryEdit.Memory mem = new MemoryEdit.Memory();
-                Process game = Process.Start(game_exe);
+                Process game = Process.Start(game_exe, string.Join(" ", args));
                 game.ProcessorAffinity = (IntPtr)1;
                 //The dynamic assembly code may not load instantly
                 Thread.Sleep(1000);
